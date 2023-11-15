@@ -1,3 +1,11 @@
+/* Este programa cifra frases em 6 diferentes cifras de substituição, armazena o resultado em uma struct,
+e loga o resultado em um arquivo de texto.*/
+
+/*Para cada cifra, foram testadas 20 frases diferentes.
+Código por Dannyel Fontenele Ribeiro - (2322130061)
+Testagem por Victor Cardozo Pedrosa - (2322130027)
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -65,7 +73,7 @@ int main(){
     test_sys_clr = sys_clr();
     
     switch (choice) {
-      case 1:
+      case 1: // César: deslocamento de valor 3 (Ex.: A (pos 1) -> D (pos 4), Z (pos 26) -> C (pos 3), F (pos 6) -> I (pos 9))
         printf("A frase \"%s\" em %s é: ", frase, cifras[choice - 1]);
         
         for (int i = 0; i < strlen(frase); i++) {
@@ -86,7 +94,7 @@ int main(){
         strcpy(par.ciphertxt, frase);
         break;
       
-      case 2:
+      case 2: // Atbash: troca das posições das letras (Ex.: A -> Z, M -> N, N -> M)
         printf("A frase \"%s\" em %s é: ", frase, cifras[choice - 1]);
         
         for (int i = 0; i < strlen(frase); i++) {
@@ -107,7 +115,7 @@ int main(){
         strcpy(par.ciphertxt, frase);
         break;
       
-      case 3:
+      case 3: // Posição das letras começando em 0, cifra-se frase usando (chave_a * letra + chave_b) mod 26.
         printf("Affine\n");
         printf("Insira valores inteiros para as chaves A e B: ");
         
@@ -176,7 +184,7 @@ int main(){
         strcpy(par.ciphertxt, ciphertxt);
         break;
       
-      case 5:
+      case 5: // Parear frase com chave (repetir chave se necessário). Soma da posição das letras -1
         printf("Vigenère\n");
         printf("Digite a palavra a ser usada como chave para cifrar a frase: ");
         
@@ -232,7 +240,7 @@ int main(){
         strcpy(par.ciphertxt, frase);
         break;
       
-      case 6:
+      case 6: // Uma das versões se baseia em uma matriz 5x5 do alfabeto, tal que I == J.
         printf("A frase \"%s\" em %s é: ", frase, cifras[choice - 1]);
         
         char polybius[26][3] = {"11", "12", "13", "14", "15", "21", "22", "23", "24", "24", "25", "31", "32", "33", 
